@@ -1,0 +1,14 @@
+	@font-face {
+	  font-family: 'Oswald';
+	  font-style: normal;
+	  font-weight: 400;
+	  src: url(oswald/-WzdRTzRa5k6HlJK6-dK9Q.eot);
+	  src: local('Oswald Regular'), local('Oswald-Regular'), url(oswald/-WzdRTzRa5k6HlJK6-dK9Q.eot) format('embedded-opentype'), url(oswald/-g5pDUSRgvxvOl5u-a_WHw.woff) format('woff');
+	}
+	@font-face {
+	  font-family: 'Oswald';
+	  font-style: normal;
+	  font-weight: 700;
+	  src: url(oswald/bH7276GfdCjMjApa_dkG6fY6323mHUZFJMgTvxaG2iE.eot);
+	  src: local('Oswald Bold'), local('Oswald-Bold'), url(oswald/bH7276GfdCjMjApa_dkG6fY6323mHUZFJMgTvxaG2iE.eot) format('embedded-opentype'), url(oswald/bH7276GfdCjMjApa_dkG6T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+	}

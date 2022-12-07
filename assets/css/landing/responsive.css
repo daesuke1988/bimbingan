@@ -1,0 +1,201 @@
+/********************************
+LAPTOP SCREEN
+********************************/
+
+@media only screen and (max-width: 1600px) {
+}
+
+
+/********************************
+IPAD LANDSCAPE (1024x768)
+********************************/
+
+@media only screen and (max-width: 1200px) {
+	#container-boxed { width:960px; }
+	.inside { width:960px; }
+	.theme-menu ul li a:link, .theme-menu ul li a:visited { width:130px; }
+	.featured-large { width:594px; }
+	.featured-port, .featured-list, .portfolio-grid-box-block ul li { width:281px; }
+	.featured-content .caption, .featured-content .blur { width:100% !important; height:376px !important; }
+	.services-list { width:225px; }
+	.blog-list { width:281px; }
+	.blog-list .password-protect-thumb { width:100%; height:174px; }
+	.blog-list iframe, .blog-desc .caption, .portfolio-grid-box-block ul li .caption { height:174px; }
+	.client-block ul li { margin-right:10px; margin-bottom:10px; width:173px; }
+	.cbp-qtrotator blockquote { width:86%; }
+	.widget-column, .services-list-three, .services-list-four, .members-list, .services-page-desc, .portfolio-list { width:204px; }
+	.portfolio-grid-block ul li { width:20%; }
+	.portfolio-grid-block ul li .caption, .portfolio-grid-block ul li .blur { height:197px; }
+	.services-list-two, .services-page-list { width:435px; }
+	.member-social, .blog-image-left .password-protect-thumb, .portfolio-image .caption { height:204px; }
+	.skills-bar { width:100%; }
+	.skills-circular-list { width:196px; }
+	.members-list-two { width:438px; }
+	.members-list-two .member-image-social { width:180px; }
+	.members-list-two .member-desc { width:226px; }
+	.left-container { width:580px; }
+	.blog-mask, .blog-mask .password-protect-thumb { width:480px; }
+	.blog-mask .password-protect-thumb { height:400px; }
+	.blog-action ul li { padding:9px 10px; }
+	.blist-grid, .portfolio-3cols { width:282px; }
+	.blog-title-grid h4, .blog-image-left { width:200px; }
+	.blog-page-desc-left { width:350px; }
+	.author-desc { width:390px; }
+	.comment-details { width:408px; }
+	.comments .children .comment-details { width:298px; }
+	.comments .children .children .comment-details { width:188px; }
+	#respond input[type="text"] { width:133px; }
+	#respond textarea { width:540px; height:200px; }
+	.video-js { width:100% !important; }
+	.portfolio-2cols { width:438px;  }
+	.portfolio-2cols .caption, .portfolio-2cols .blur { height:319px; }
+	.portfolio-3cols .caption, .portfolio-3cols .blur { height:241px; }
+	.portfolio-3cols-sidebar { width:173px; }
+	.portfolio-3cols-sidebar .caption, .portfolio-3cols-sidebar .blur { height:173px; }
+	.portfolio-masonry { width:170px; }
+	.portfolio-single-image { width:500px; }
+	.portfolio-single-desc { width:375px; }
+	.contact-form { width:415px; }
+	.contact-form input[type="text"], .contact-form input[type="email"], .password-protect-content input[type="password"] { width:77px; }
+	.contact-form textarea { width:373px; }
+}
+
+
+/********************************
+IPAD PORTRAIT (768x1024)
+********************************/
+
+@media only screen and (max-width: 960px) {
+	#container-boxed { width:690px; }
+	.inside { width:700px; }
+	#main-menu { display: none; }
+	.select-menu { display: block; position:relative; top:110px; font-size:14px; border:1px solid #DDD; width:200px; }
+	.featured-large { width:600px; margin-right:0; margin-bottom:30px; }
+	.featured-port, .featured-list { margin-right:37px; margin-bottom:37px; }
+	.caption-style-4, .blog-home-list, .client-block .inside ul, .portfolio-grid-box-block .inside ul { width:107%; }
+	.featured-content .caption, .featured-content .blur { height:380px !important; }
+	.services-list { width:299px; margin-bottom:1px; }
+	.client-block ul li { width:180px; margin-right:30px; margin-bottom:30px; }
+	.cbp-qtrotator blockquote { width:79%; }
+	.widget-column, .services-list-two, .services-page-list, .members-list-two, .left-container, .sidebar,
+	.sidebar .feat-desc-work .blur, .sidebar .feat-desc-work .caption, .sidebar .password-protect-thumb,
+	.portfolio-single-image, .portfolio-single-desc, .contact-map, .contact-form { width:100%; }
+	.services-list-two, .services-page-list, .members-list-two, .portfolio-single-image { margin-right:0; }
+	.portfolio-grid-box-block .featured-list.last { margin-right:30px !important; }
+	.services-list-three, .services-list-four, .members-list { width:127px; }
+	.member-social { height:127px; }
+	.skills-circular-list { width:120px; }
+	.members-list-two .member-desc { width:388px; }
+	.left-container, .portfolio-single-image, .contact-map { margin-bottom:30px; }
+	.services-page-desc, .blog-page-desc-left { width:370px; }
+	.blog-mask, .blog-mask .password-protect-thumb { width:500px; }
+	.blist-grid, .portfolio-3cols { width:284px; }
+	.author-desc { width:410px; }
+	.comment-details { width:428px; }
+	.comments .children .comment-details { width:318px; }
+	.comments .children .children .comment-details { width:208px; }
+	#respond textarea { width:560px; }
+	#respond input[type="text"] { width:140px; }
+	.portfolio-list { margin-right:10px; margin-bottom:20px; width:142px; }
+	.member-social, .blog-image-left .password-protect-thumb, .portfolio-image .caption, .portfolio-list .blur { height:142px; }
+	.portfolio-2cols { width:295px; }
+	.portfolio-2cols .caption, .portfolio-2cols .blur { height:215px; }
+	.portfolio-3cols, .portfolio-3cols-sidebar { width:193px; }
+	.portfolio-3cols .caption, .portfolio-3cols .blur { height:165px; }
+	.portfolio-3cols-sidebar .caption, .portfolio-3cols-sidebar .blur { height:193px; }
+	.portfolio-masonry { margin-bottom:10px; width:193px; }
+	.contact-form textarea { width:558px; }
+	.contact-form input[type="text"], .contact-form input[type="email"], .password-protect-content input[type="password"] { width:138px; }
+}
+
+
+/********************************
+IPHONE 4-4S-5 LANDSCAPE (568x320)
+********************************/
+
+@media only screen and (max-width: 760px) {
+	#container-boxed { width:380px; }
+	.inside { /*width:330px;*/ width:96%; }
+	.logo { width:100%; text-align:center; margin-bottom:20px; padding-top:70px; }
+	.social { width:100%; text-align:center; }
+	.social ul { display:inline-table; }
+	.theme-menu, .featured-large, .services-list, .blog-list, .blog-home-list, .caption-style-4,
+	.portfolio-grid-box-block .inside ul, .portfolio-grid-box-block ul li,
+	.services-list-three, .services-list-four, .members-list, .skills-legend, #diagram,
+	.members-list-two .member-image-social, .members-list-two .member-desc,
+	.services-page-desc, .blog-page-desc-left, .blog-mask, .blog-action, .blog-mask, .blog-mask .password-protect-thumb,
+	.services-container a, .blist-grid, .blog-image-left, .author-desc, .portfolio-list.portfolio-2cols,
+	.portfolio-list.portfolio-3cols { width:100%; }
+	.select-menu { top:0; width:100%; margin-bottom:30px; }
+	.featured-large .caption, .featured-large .blur { height:224px !important; }
+	.featured-port, .featured-list { margin-right:0; width:100%; }
+	.featured-port .caption, .featured-port .blur, .featured-list .caption, .featured-list .blur,
+	.blog-list .caption { height:218px !important; }
+	.services-list, .blog-list, .portfolio-grid-box-block ul li, 
+	.services-list-three, .services-list-four, .members-list, .members-list-two .member-image-social,
+	.services-page-icon, .blist-grid, .blog-image-left, .portfolio-list { margin-right:0; }
+	.client-block ul li { width:160px; margin-bottom:10px; margin-right:10px; }
+	.cbp-qtrotator blockquote { width:63%; }
+	.copyright { margin-bottom:30px; display:block; }
+	.featured-port, .featured-list, .services-page-icon, .blog-image-left { margin-bottom:30px; }
+	.portfolio-grid-block ul li { width:20%; }
+	.portfolio-grid-box-block .caption, .portfolio-grid-box-block .blur { height:204px !important; }
+	.services-list-three, .services-list-four, .members-list, .author-block, .author-block img { margin-bottom:30px; }
+	.sb-search { display:none; }
+	.contact-info h2, .services-container h2, .member-block h2, .skills-block h2 { line-height:40px; }
+	.member-social { height:260px; }
+	.skills-legend, #diagram { float:none; }
+	.skills-circular-list { width:135px; margin-bottom:30px; }
+	.services-page-list { text-align:center; }
+	.services-page-icon { display:inline-table; float:none; }
+	.services-page-icon i { padding-top:35%; }
+	.services-container .services-page-icon i { padding-top:22%; }
+	.page-not-found h2 { line-height:60px; }
+	.blog-action ul li { float:left; padding:9px 13px; margin-right:1px; }
+	.blog-mask .password-protect-thumb { height:200px; }
+	.comment-details { width:268px; }
+	.comments .children .parent { margin-left:40px; }
+	.comments .children .comment-details { width:228px; }
+	.comments .children .children .parent { margin-left:80px; }
+	.comments .children .children .comment-details { width:188px; }
+	.contact-form ul li, #respond ul li { margin-right:0; float:none; }
+	#respond input[type="text"], #respond textarea { width:290px; }
+	.portfolio-list { width:260px; }
+	.portfolio-list .caption, .portfolio-list .blur { height:260px; }
+	.portfolio-list.portfolio-2cols .caption, .portfolio-list.portfolio-2cols .blur { height:240px; }
+	.portfolio-list.portfolio-3cols .caption, .portfolio-list.portfolio-3cols .blur { height:282px; }
+	.portfolio-3cols-sidebar { width:246px; }
+	.portfolio-masonry { width:160px; margin-right:10px; }
+	.contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea,
+	.password-protect-content input[type="password"] { width:87%; }
+}
+
+
+/********************************
+IPHONE 4-4S-5 PORTRAIT (320x568)
+********************************/
+
+@media only screen and (max-width: 450px) {
+	#container-boxed { width:300px; }
+	.inside { /*width:250px;*/ width:97%; }
+	.portfolio-showcase-block h2, .services-block h2, .blog-block h2, .client-block h2, .portfolio-grid-box-block h2 { line-height:40px; }
+	span.or { display:none; }
+	.welcome-port-links a { display:block; margin-bottom:10px; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px; }
+	.buy-theme { margin-left:0; }
+	.client-block .inside ul, .cbp-qtrotator blockquote, .skills-circular-list, .portfolio-list { width:100%; }
+	.client-block ul li { width:202px; margin-right:0; margin-bottom:30px; }
+	.portfolio-grid-block ul li { width:50%; }
+	.skills-circular-list, .portfolio-masonry { margin-right:0; }
+	.sidebar .feat-desc-work .caption, .sidebar .feat-desc-work .blur { height:179px; }
+	.comment-details { width:188px; }
+	.comments .children .parent { margin-left:20px; }
+	.comments .children .comment-details { width:168px; }
+	.comments .children .children .parent { margin-left:40px; }
+	.comments .children .children .comment-details { width:148px; }
+	#respond input[type="text"], #respond textarea { width:210px; }
+	.portfolio-list.portfolio-2cols .caption, .portfolio-list.portfolio-2cols .blur { height:182px; }
+	.portfolio-list.portfolio-3cols .caption, .portfolio-list.portfolio-3cols .blur { height:213px; }
+	.portfolio-masonry { margin-bottom:30px; }
+	.contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea,
+	.password-protect-content input[type="password"] { width:82%; }
+}
