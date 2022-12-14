@@ -81,7 +81,7 @@ class Kerjapraktekmodels extends CI_Model
     // menampilkan detail kerja praktek berdasarkan id
     function findbyid($id)
     {
-        $this->db->select('kp.nim, d1.nama as nm_dosen1, d2.nama as nm_dosen2, kp.id as id_kp, kp.judul, kp.lokasi, kp.alamat_kp, kp.alamat_dihub, kp.tahun, kp.semester, kp.telpon, pk.id_dosen1, pk.id_dosen2, kp.image');
+        $this->db->select('kp.nim, d1.nmdos as nm_dosen1, d2.nmdos as nm_dosen2, kp.id as id_kp, kp.judul, kp.lokasi, kp.alamat_kp, kp.alamat_dihub, kp.tahun, kp.semester, kp.telpon, pk.id_dosen1, pk.id_dosen2, kp.image');
         $this->db->join('pembimbing_kp pk', 'pk.id_kp = kp.id', 'left');
         $this->db->join('dosen d1', 'd1.id = pk.id_dosen1', 'left');
         $this->db->join('dosen d2', 'd2.id = pk.id_dosen2', 'left');

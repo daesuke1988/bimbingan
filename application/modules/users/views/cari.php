@@ -1,16 +1,15 @@
-<script src="<?php echo base_url()?>assets/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url() ?>assets/js/jquery-2.0.3.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-        function search(){
+    $(document).ready(function() {
+        function search() {
             var strcari = $("#txtcari").val();
-            if(strcari != "")
-            {
+            if (strcari != "") {
                 $("#hasil").html("<div class='progress progress-striped active'><div style='width: 100%' aria-valuemax='100' aria-valuemin='0' aria-valuenow='50' role='progressbar' class='progress-bar progress-bar-success'></div></div>")
                 $.ajax({
-                    type:"post",
-                    url:"<?php echo base_url().'users/search';?>",
-                    data:"keyword="+ strcari,
-                    success:function(data){
+                    type: "post",
+                    url: "<?php echo base_url() . 'users/search'; ?>",
+                    data: "keyword=" + strcari,
+                    success: function(data) {
                         $("#hasil").html(data);
                         $("#txtcari").val("");
                     }
@@ -18,13 +17,13 @@
             }
         }
 
-        $("#button").click(function(){
+        $("#button").click(function() {
             search();
         })
     });
 </script>
 
-<a class="btn btn-primary" href="<?=base_url()?>users/insert"> <i class="fa fa-plus-square"></i> Tambah User</a>
+<a class="btn btn-primary" href="<?= base_url() ?>users/insert"> <i class="fa fa-plus-square"></i> Tambah User</a>
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -50,7 +49,7 @@
                                 <input id="txtcari" class="form-control" type="text" name="keyword" placeholder="masukan pencarian" value="">
                             </div>
                             <div class="col-sm-2">
-                                <input type="button" id="button" value="Cari" class="btn btn-primary"/>
+                                <input type="button" id="button" value="Cari" class="btn btn-primary" />
                             </div>
                         </div>
                     </form>

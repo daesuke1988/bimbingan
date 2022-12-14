@@ -69,7 +69,7 @@ class Skripsimodels extends CI_Model
     // menampilkan detail kerja praktek berdasarkan id
     function findbyid($id)
     {
-        $this->db->select('kp.nim, d1.nama as nm_dosen1, d2.nama as nm_dosen2, kp.id as id_skripsi, kp.judul, kp.tahun, kp.semester, kp.telpon, pk.id_dosen1, pk.id_dosen2, kp.image_syarat, kp.image_proposal, kp.status_pendaftar');
+        $this->db->select('kp.nim, d1.nmdos as nm_dosen1, d2.nmdos as nm_dosen2, kp.id as id_skripsi, kp.judul, kp.tahun, kp.semester, kp.telpon, pk.id_dosen1, pk.id_dosen2, kp.image_syarat, kp.image_proposal, kp.status_pendaftar');
         $this->db->join('pembimbing_skripsi pk', 'pk.id_skripsi = kp.id', 'left');
         $this->db->join('dosen d1', 'd1.id = pk.id_dosen1', 'left');
         $this->db->join('dosen d2', 'd2.id = pk.id_dosen2', 'left');

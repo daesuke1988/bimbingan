@@ -103,7 +103,6 @@ class Skripsimodels extends CI_Model
         $this->db->join('users u', 'u.id = bk.id_user', 'left');
         $this->db->join('users_groups ug', 'ug.user_id = u.id', 'left');
         $this->db->where('bk.id_skripsi', $id_skripsi);
-        $this->db->where('ug.group_id', '4');
         $this->db->order_by('bk.id', 'desc');
         $query = $this->db->get('bimbingan_skripsi bk');
         return $query;
@@ -116,7 +115,6 @@ class Skripsimodels extends CI_Model
         $this->db->join('users u', 'u.id = bk.id_user', 'left');
         $this->db->join('users_groups ug', 'ug.user_id = u.id', 'left');
         $this->db->where('bk.id_skripsi', $id_skripsi);
-        // $this->db->where('ug.group_id', '4');
         $this->db->order_by('bk.id', 'desc');
         $query = $this->db->get('bimbingan_skripsi bk');
         return $query;
@@ -128,7 +126,6 @@ class Skripsimodels extends CI_Model
         $this->db->join('users u', 'u.id = bk.id_user', 'left');
         $this->db->join('users_groups ug', 'ug.user_id = u.id', 'left');
         $this->db->where('bk.id_skripsi', $id_skripsi);
-        // $this->db->where('ug.group_id', '4');
         $query = $this->db->get('bimbingan_skripsi bk');
         return $query->row_array();
     }

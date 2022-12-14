@@ -87,7 +87,6 @@
                                             ?>
                                             <?php
                                             if ($row->approv_dosen == 't') {
-                                                echo 'dsdsdsd';
                                             } else {
                                                 if (strtotime($row->end) < strtotime(date("d-m-Y"))) {
                                             ?>
