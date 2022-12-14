@@ -106,7 +106,7 @@
 
             <div class="footer">
                 <div>
-                    <strong>Copyright</strong> Universitas Negeri Yogyakarta &copy; 2020-<?php print date("Y"); ?>
+                    <strong>Copyright</strong> 12201766 &copy; <?php print date("Y"); ?>
                 </div>
             </div>
         </div>

@@ -293,7 +293,7 @@ class Skripsi extends MX_Controller
     {
         $this->ion_auth->is_allow('bimbingan/skripsi/' . __FUNCTION__);
         $id_skripsi = $this->input->post('id_skripsi');
-        $this->db->query("update kerja_praktek set approv_kaprodi = null, status_pendaftar = '2' where id = '$id_skripsi'");
+        $this->db->query("update skripsi set approv_kaprodi = null, status_pendaftar = '2' where id = '$id_skripsi'");
         $this->session->set_flashdata('message', '<div class="alert alert-success">
                                             <button class="close" data-dismiss="alert"> × </button>
                                             <i class="fa fa-check-circle"></i>
