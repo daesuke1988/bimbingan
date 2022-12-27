@@ -46,6 +46,18 @@ class Akademikmodels extends CI_Model
             LEFT JOIN mhs m ON m.id = k.id_mhs
             WHERE m.nim = '$nim' AND k.tahun = '2022' AND k.semester = '1' AND ds.nama ILIKE 'Kerja Praktek'
         ");
+        return $query->row_array();
+    }
+
+    function cek_krs_kkl($nim, $tahun, $semester)
+    {
+        $query = $this->db->query("
+            SELECT m.nim, ds.nama, k.tahun, k.semester FROM data_studi ds
+            LEFT JOIN krs k on k.id = ds.id_krs
+            LEFT JOIN mhs m ON m.id = k.id_mhs
+            WHERE m.nim = '$nim' AND k.tahun = '$tahun' AND k.semester = '$semester' AND (ds.nama ILIKE 'Kuliah Kerja Lapang' or ds.nama ILIKE 'KKL')
+        ");
+        return $query->row_array();
     }
 
     // cek id user dosen
@@ -53,6 +65,44 @@ class Akademikmodels extends CI_Model
     {
         $this->db->where('username', $npp);
         $query = $this->db->get('users');
+        return $query->row_array();
+    }
+
+    // menampilkan nim
+    function mhs()
+    {
+        $query = $this->db->get('mhs');
+        return $query;
+    }
+
+    // cek pembayaran kp
+    function cek_pembayaran_kp($nim, $tahun, $semester)
+    {
+        $this->db->where('jenis_pembayaran', 'Kerja Praktek');
+        $this->db->where('nim', $nim);
+        $this->db->where('tahun', $tahun);
+        $this->db->where('semester', $semester);
+        $query = $this->db->get('pembayaran');
+        return $query->row_array();
+    }
+    // cek pembayaran kkl
+    function cek_pembayaran_kkl($nim, $tahun, $semester)
+    {
+        $this->db->where('jenis_pembayaran', 'KKL');
+        $this->db->where('nim', $nim);
+        $this->db->where('tahun', $tahun);
+        $this->db->where('semester', $semester);
+        $query = $this->db->get('pembayaran');
+        return $query->row_array();
+    }
+    // cek pembayaran skripsi
+    function cek_pembayaran_skripsi($nim, $tahun, $semester)
+    {
+        $this->db->where('jenis_pembayaran', 'Skripsi');
+        $this->db->where('nim', $nim);
+        $this->db->where('tahun', $tahun);
+        $this->db->where('semester', $semester);
+        $query = $this->db->get('pembayaran');
         return $query->row_array();
     }
 }

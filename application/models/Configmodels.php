@@ -9,6 +9,8 @@ class Configmodels extends CI_Model
 
     public function config()
     {
+        $this->db->where('status', 't');
+        $this->db->order_by('tahun', 'desc');
         $this->db->limit('1');
         $query = $this->db->get('config_krs');
         return $query->row_array();
