@@ -147,6 +147,16 @@
         }
         ?>
     </table>
+    <table width='100%'>
+        <tr>
+            <td width='50%'></td>
+            <td align="center">Dosen Pembimbing &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+            <td width='50%'></td>
+            <td align="center"><br><br><br><?php echo $kkl['dosen'] ?><br><?php echo 'NPP. ' . $kkl['npp_dosen'] ?></td>
+        </tr>
+    </table>
 </body>
 
 </html>
