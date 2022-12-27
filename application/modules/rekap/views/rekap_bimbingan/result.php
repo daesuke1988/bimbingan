@@ -26,12 +26,12 @@ error_reporting(0);
     foreach ($rekap->result() as $row) {
     ?> <tr>
             <td width="5%"><?php echo $i++; ?></td>
-            <td><?php echo $row->npp; ?></td>
+            <td><?php echo $row->nodos; ?></td>
             <td><?php echo $row->dosen; ?></td>
             <td><?php echo $row->jml_mhs_kp; ?></td>
             <td><?php echo $row->jml_mhs_s; ?></td>
             <td><?php echo $row->jml_mhs_kkl; ?></td>
-            <td><?php echo $row->jml_mhs_kp + $row->jml_mhs_kkl + $row->jml_mhs_kkl; ?></td>
+            <td><?php echo $row->jml_mhs_kp + $row->jml_mhs_s + $row->jml_mhs_kkl; ?></td>
         </tr>
     <?php
     }

@@ -6,7 +6,7 @@ class Kkl extends MX_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model(array('kklmodels', 'akademikmodels'));
+        $this->load->model(array('kklmodels', 'akademikmodels', 'configmodels'));
         $this->template->set('title', '<i class="fa text-success"> Kuliah Kerja Lapangan </i>');
         // $this->output->enable_profiler(TRUE);
     }
@@ -17,6 +17,7 @@ class Kkl extends MX_Controller
         $id_groups = $this->session->userdata('group_id');
         $this->load->model('configmodels');
         if ($id_groups == '5') {
+            $data['config'] = $this->configmodels->config();
             $nim = $this->session->userdata('username');
             $cek = $this->kklmodels->cek_kkl($nim);
             if ($cek) {
@@ -27,12 +28,13 @@ class Kkl extends MX_Controller
                 }
                 $data['cek'] = $cek;
                 $data['kkl'] = $this->kklmodels->pend_kkl_mhs($nim);
-                $data['config'] = $this->configmodels->config();
                 $this->template->load('layout', 'kkl/views', $data);
             } else {
                 $data['profile'] = $this->akademikmodels->biodata($nim);
                 $data['akademik'] = $this->akademikmodels->data_studi($nim);
-                $data['krs'] = $this->akademikmodels->cek_krs_kp($nim);
+                $data['krs'] = $this->akademikmodels->cek_krs_kkl($nim, $data['config']['tahun'], $data['config']['semester']);
+                $data['tahun']  = $data['config']['tahun'];
+                $data['pembayaran'] = $this->akademikmodels->cek_pembayaran_kkl($nim, $data['config']['tahun'], $data['config']['semester']);
                 $this->template->load('layout', 'kkl/form_kkl', $data);
             }
         } else {

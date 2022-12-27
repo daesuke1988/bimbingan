@@ -6,7 +6,7 @@ class Kerjapraktek extends MX_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model(array('kerjapraktekmodels', 'akademikmodels'));
+        $this->load->model(array('kerjapraktekmodels', 'akademikmodels', 'configmodels'));
         $this->template->set('title', '<i class="fa text-success"> Kerja Praktek </i>');
         // $this->output->enable_profiler(TRUE);
     }
@@ -19,16 +19,18 @@ class Kerjapraktek extends MX_Controller
         if ($id_groups == '5') {
             $nim = $this->session->userdata('username');
             $cek = $this->kerjapraktekmodels->cek_kp($nim);
+            $data['config'] = $this->configmodels->config();
             if ($cek) {
                 $data['cek'] = $cek;
                 $data['kp'] = $this->kerjapraktekmodels->pend_kp_mhs($nim);
-                $data['config'] = $this->configmodels->config();
                 $this->template->load('layout', 'kp/views', $data);
             } else {
                 $data['profile'] = $this->akademikmodels->biodata($nim);
                 $data['akademik'] = $this->akademikmodels->data_studi($nim);
                 $data['krs'] = $this->akademikmodels->cek_krs_kp($nim);
                 $data['dosen'] = $this->akademikmodels->dosen();
+                $data['tahun']  = $data['config']['tahun'];
+                $data['pembayaran'] = $this->akademikmodels->cek_pembayaran_kp($nim, $data['config']['tahun'], $data['config']['semester']);
                 $this->template->load('layout', 'kp/form_kp', $data);
             }
         } else {

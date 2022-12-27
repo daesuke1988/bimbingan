@@ -125,4 +125,26 @@ class Rekapmodels extends CI_Model
         $query = $this->db->get('v_rekap_count_jml_bimbingan_kkl_individu');
         return $query;
     }
+    // menampilkan data jumlah bimbingn dosen
+    function jml_bimbingan_kkl_kelompok($tahun = null, $semester = null)
+    {
+        $group = $this->session->userdata('group_id');
+        $npp = $this->session->userdata('username');
+        if ($group == '4') {
+            $this->db->where('npp_dosen', $npp);
+        }
+
+        if ($tahun) {
+            $this->db->where('tahun', $tahun);
+        }
+        if ($semester) {
+            $this->db->where('semester', $semester);
+        }
+        $this->db->select('*');
+        $this->db->order_by('dosen', 'ASC');
+        $this->db->order_by('tahun', 'DESC');
+        $this->db->order_by('semester', 'DESC');
+        $query = $this->db->get('v_rekap_count_jml_bimbingan_kkl_kelompok');
+        return $query;
+    }
 }

@@ -74,4 +74,20 @@ class Rekap extends MX_Controller
         $data['rekap'] = $this->rekapmodels->jml_bimbingan_kkl_individu($data['tahun'], $data['semester']);
         $this->load->view('rekap_bimbingan/result_kkl_individu', $data);
     }
+    // menampilkan views rekap bimbingan kkl_individu
+    function bimbingan_kkl_kelompok()
+    {
+        $this->ion_auth->is_allow('rekap/' . __FUNCTION__);
+        $this->template->load('layout', 'rekap_bimbingan/index_kkl_kelompok');
+    }
+
+    // menampilkan dan mencari data jumlah mahasiswa bimbingan kkl_kelompok
+    function result_kkl_kelompok()
+    {
+        $this->ion_auth->is_allow('rekap/' . __FUNCTION__);
+        $data['tahun'] = $this->input->post('tahun');
+        $data['semester'] = $this->input->post('semester');
+        $data['rekap'] = $this->rekapmodels->jml_bimbingan_kkl_kelompok($data['tahun'], $data['semester']);
+        $this->load->view('rekap_bimbingan/result_kkl_kelompok', $data);
+    }
 }

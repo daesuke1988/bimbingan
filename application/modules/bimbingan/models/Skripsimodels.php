@@ -122,11 +122,18 @@ class Skripsimodels extends CI_Model
 
     function count_bimbingan($id_skripsi)
     {
-        $this->db->select('COUNT(bk.id) as total');
-        $this->db->join('users u', 'u.id = bk.id_user', 'left');
-        $this->db->join('users_groups ug', 'ug.user_id = u.id', 'left');
-        $this->db->where('bk.id_skripsi', $id_skripsi);
-        $query = $this->db->get('bimbingan_skripsi bk');
+        $query = $this->db->query("
+            SELECT COUNT(id_skripsi) as total, v_bk.id_skripsi FROM
+            (SELECT 
+                bk.id_skripsi, bk.date::TIMESTAMP::DATE
+                FROM bimbingan_skripsi bk
+                LEFT JOIN users u ON u.id = bk.id_user
+                LEFT JOIN users_groups ug ON ug.user_id = u.id
+                WHERE ug.group_id = 4
+                GROUP BY bk.id_skripsi, bk.date::TIMESTAMP::DATE)v_bk
+                where v_bk.id_skripsi = '$id_skripsi'
+            GROUP BY v_bk.id_skripsi
+        ");
         return $query->row_array();
     }
 

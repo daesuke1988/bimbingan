@@ -127,12 +127,18 @@ class Kerjapraktekmodels extends CI_Model
 
     function count_bimbingan($id_kp)
     {
-        $this->db->select('COUNT(bk.id) as total');
-        $this->db->join('users u', 'u.id = bk.id_user', 'left');
-        $this->db->join('users_groups ug', 'ug.user_id = u.id', 'left');
-        $this->db->where('bk.id_kp', $id_kp);
-        // $this->db->where('ug.group_id', '4');
-        $query = $this->db->get('bimbingan_kp bk');
+        $query = $this->db->query("
+            SELECT COUNT(id_kp) as total, v_bk.id_kp FROM
+                        (SELECT 
+                bk.id_kp, bk.date::TIMESTAMP::DATE
+                FROM bimbingan_kp bk
+                LEFT JOIN users u ON u.id = bk.id_user
+                LEFT JOIN users_groups ug ON ug.user_id = u.id
+                WHERE ug.group_id = 4
+                GROUP BY bk.id_kp, bk.date::TIMESTAMP::DATE)v_bk
+            where v_bk.id_Kp = '$id_kp'
+            GROUP BY v_bk.id_kp
+        ");
         return $query->row_array();
     }
 

@@ -50,12 +50,16 @@ class Accmodels extends CI_Model
                 FROM sk_kerjapraktek
                 GROUP BY sk_kerjapraktek.id_kp) skp ON skp.id_kp = s.id
             LEFT JOIN sk_kerjapraktek sk ON sk.id = skp.id_sk
-            LEFT JOIN ( SELECT count(bk.id) AS jml_bimbingan,bk.id_kp
-                FROM bimbingan_kp bk
-                LEFT JOIN users u ON u.id = bk.id_user
-                LEFT JOIN users_groups ug ON ug.user_id = u.id
-                WHERE ug.group_id = 4
-                GROUP BY bk.id_kp) v_bimb ON v_bimb.id_kp = s.id
+            LEFT JOIN ( SELECT count(v_bk.id_kp) AS jml_bimbingan,
+                        v_bk.id_kp
+                    FROM ( SELECT bk.id_kp,
+                                bk.date::date AS date
+                            FROM bimbingan_kp bk
+                                LEFT JOIN users u ON u.id = bk.id_user
+                                LEFT JOIN users_groups ug ON ug.user_id = u.id
+                            WHERE ug.group_id = 4
+                            GROUP BY bk.id_kp, (bk.date::date)) v_bk
+                    GROUP BY v_bk.id_kp) v_bimb ON v_bimb.id_kp = s.id
         WHERE s.approv_dosen = 't' $where_tahun_kp $where_semester_kp $where_dosen ORDER BY s.tahun DESC, s.semester DESC, s.nim ASC
         ");
         return $query;
@@ -103,13 +107,16 @@ class Accmodels extends CI_Model
                                 LEFT JOIN prodi p ON p.id = m.kdpst
                     LEFT JOIN sk_skripsi sk ON sk.id_skripsi = s.id
                     LEFT JOIN 
-                    ( SELECT count(bk.id) AS jml_bimbingan,
-                        bk.id_skripsi
-                    FROM bimbingan_skripsi bk
-                        LEFT JOIN users u ON u.id = bk.id_user
-                        LEFT JOIN users_groups ug ON ug.user_id = u.id
-                    WHERE ug.group_id = 4
-                    GROUP BY bk.id_skripsi) v_bimb ON v_bimb.id_skripsi = s.id
+                    ( SELECT count(v_bk.id_skripsi) AS jml_bimbingan,
+                            v_bk.id_skripsi
+                        FROM ( SELECT bk.id_skripsi,
+                                    bk.date::date AS date
+                                FROM bimbingan_skripsi bk
+                                    LEFT JOIN users u ON u.id = bk.id_user
+                                    LEFT JOIN users_groups ug ON ug.user_id = u.id
+                                WHERE ug.group_id = 4
+                                GROUP BY bk.id_skripsi, (bk.date::date)) v_bk
+                        GROUP BY v_bk.id_skripsi) v_bimb ON v_bimb.id_skripsi = s.id
             WHERE s.approv_dosen = 't' $where_tahun_kp $where_semester_kp $where_dosen ORDER BY s.tahun DESC, s.semester DESC, s.nim ASC
         ");
         return $query;
@@ -145,13 +152,16 @@ class Accmodels extends CI_Model
                     LEFT JOIN dosen d ON d.id = pk.id_dosen
                     LEFT JOIN mhs m ON m.nim = kkl.nim
                     LEFT JOIN prodi p ON p.id = m.kdpst
-                    LEFT JOIN ( SELECT count(bk.id) AS jml_bimbingan,
-                            bk.id_kkl
-                        FROM bimbingan_kkl_individu bk
-                            LEFT JOIN users u ON u.id = bk.id_user
-                            LEFT JOIN users_groups ug ON ug.user_id = u.id
-                        WHERE ug.group_id = 4
-                        GROUP BY bk.id_kkl) v_bimb ON v_bimb.id_kkl = kkl.id
+                    LEFT JOIN ( SELECT count(v_bk.id_kkl) AS jml_bimbingan,
+                                v_bk.id_kkl
+                            FROM ( SELECT count(bk.id) AS jml_bimbingan,
+                                bk.id_kkl
+                            FROM bimbingan_kkl_individu bk
+                             LEFT JOIN users u ON u.id = bk.id_user
+                             LEFT JOIN users_groups ug ON ug.user_id = u.id
+                          WHERE ug.group_id = 4
+                          GROUP BY bk.id_kkl, bk.date) v_bk
+                  GROUP BY v_bk.id_kkl) v_bimb ON v_bimb.id_kkl = kkl.id
                 WHERE pk.approv_dosen = 't' $where_tahun_kp $where_semester_kp $where_dosen ORDER BY kkl.tahun DESC, kkl.semester DESC, kkl.nim ASC
         ");
         return $query;
@@ -193,13 +203,16 @@ class Accmodels extends CI_Model
                 FROM kelompok_kkl kk
                     LEFT JOIN kelompok k ON k.id = kk.id_kelompok
                     LEFT JOIN dosen d ON d.id = kk.id_dosen
-                        LEFT JOIN ( SELECT count(bk.id) AS jml_bimbingan,
-                                    bk.id_kelompok_kkl
-                    FROM bimbingan_kkl_kelompok bk
-                    LEFT JOIN users u ON u.id = bk.id_user
-                    LEFT JOIN users_groups ug ON ug.user_id = u.id
-                    WHERE ug.group_id = 4 AND id_kategori = 'k'
-                    GROUP BY bk.id_kelompok_kkl) v_bimb ON v_bimb.id_kelompok_kkl = kk.id
+                        LEFT JOIN ( SELECT count(v_bk.id_kelompok_kkl) AS jml_bimbingan,
+                        v_bk.id_kelompok_kkl
+                       FROM ( SELECT bk.id_kelompok_kkl,
+                                bk.date
+                               FROM bimbingan_kkl_kelompok bk
+                                 LEFT JOIN users u ON u.id = bk.id_user
+                                 LEFT JOIN users_groups ug ON ug.user_id = u.id
+                              WHERE ug.group_id = 4
+                              GROUP BY bk.id_kelompok_kkl, bk.date) v_bk
+                      GROUP BY v_bk.id_kelompok_kkl) v_bimb ON v_bimb.id_kelompok_kkl = kk.id
                     WHERE kk.approv_dosen = 't'  $where_tahun_kp $where_semester_kp $where_dosen
         ");
         return $query;

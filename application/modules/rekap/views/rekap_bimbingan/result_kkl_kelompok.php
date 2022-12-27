@@ -13,11 +13,9 @@ error_reporting(0);
     <thead>
         <tr>
             <th>No</th>
-            <th>No Mhs</th>
-            <th>Nama</th>
-            <th>Judul KP</th>
+            <th>Nama Kelompok</th>
             <th>Dosen Pembimbing</th>
-            <th>Jml Bimbingan KKL Individu</th>
+            <th>Jml Bimbingan KKL Kelompok</th>
             <th>Tahun</th>
             <th>Semester</th>
         </tr>
@@ -27,9 +25,7 @@ error_reporting(0);
     foreach ($rekap->result() as $row) {
     ?> <tr>
             <td width="5%"><?php echo $i++; ?></td>
-            <td><?php echo $row->nim; ?></td>
-            <td><?php echo $row->nama; ?></td>
-            <td><?php echo $row->judul; ?></td>
+            <td><?php echo $row->nm_kelompok; ?></td>
             <td><?php echo $row->dosen; ?></td>
             <td><?php echo $row->jml_bimbingan; ?></td>
             <td><?php echo $row->tahun; ?></td>

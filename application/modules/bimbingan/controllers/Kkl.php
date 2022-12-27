@@ -473,7 +473,7 @@ class kkl extends MX_Controller
         $data['sk'] = $this->kklmodels->findbyid_kelompok_kkl($data['id_kelompok_kkl']);
         $data['bimbingan'] = $this->kklmodels->bimbingan_kelompok($data['id_kelompok_kkl']);
         $data['approv'] = $this->kklmodels->cek_approv_kelompok($data['id_kelompok_kkl']);
-        // $data['count'] = $this->kklmodels->count_bimbingan_kelompok($data['id_kelompok_kkl']);
+        $data['count'] = $this->kklmodels->count_bimbingan_kelompok($data['id_kelompok_kkl']);
         $this->template->load('layout', 'kkl/kelompok/list_bimbingan_kelompok', $data);
     }
 

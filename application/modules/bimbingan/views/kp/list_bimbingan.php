@@ -31,13 +31,13 @@
                                     <?php
                                     if ($detail_kp['flag_open'] == 't') {
                                     ?>
-                                        <a class='btn btn-success' data-placement="top" data-toggle="tooltip" data-original-title="Hapus" href="#" onclick="confirmOpen('<?php echo $id_kp; ?>')"> Ya </a>
-                                        <a class='btn btn-default' data-placement="top" data-toggle="tooltip" data-original-title="Hapus" href="#" onclick="confirmClose('<?php echo $id_kp; ?>')"> Tidak </a>
+                                        <a class='btn btn-success' data-placement="top" data-toggle="tooltip" data-original-title="Hapus" href="#" onclick="confirmOpen('<?php echo $id_kp; ?>')"> <i class="fa fa-thumbs-up"></i> Ya </a>
+                                        <a class='btn btn-default' data-placement="top" data-toggle="tooltip" data-original-title="Hapus" href="#" onclick="confirmClose('<?php echo $id_kp; ?>')"> <i class="fa fa-thumbs-down"></i> Tidak </a>
                                     <?php
                                     } else {
                                     ?>
-                                        <a class='btn btn-default' data-placement="top" data-toggle="tooltip" data-original-title="Hapus" href="#" onclick="confirmOpen('<?php echo $id_kp; ?>')"> Ya </a>
-                                        <a class='btn btn-danger' data-placement="top" data-toggle="tooltip" data-original-title="Hapus" href="#" onclick="confirmClose('<?php echo $id_kp; ?>')"> Tidak </a>
+                                        <a class='btn btn-default' data-placement="top" data-toggle="tooltip" data-original-title="Hapus" href="#" onclick="confirmOpen('<?php echo $id_kp; ?>')"> <i class="fa fa-thumbs-up"></i> Ya </a>
+                                        <a class='btn btn-danger' data-placement="top" data-toggle="tooltip" data-original-title="Hapus" href="#" onclick="confirmClose('<?php echo $id_kp; ?>')"> <i class="fa fa-thumbs-down"></i> Tidak </a>
                                     <?php
                                     }
                                     ?>
@@ -45,6 +45,9 @@
                             </div>
                         </form>
                         <form method="post" action="<?php echo base_url(); ?>bimbingan/kerjapraktek/acc" enctype="multipart/form-data">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal5">
+                                <i class="fa fa-comments"></i> Bimbingan Dosen
+                            </button>
                             <?php
                             if ($count['total'] >= '12') {
                             ?>
@@ -53,14 +56,11 @@
                             <?php
                             }
                             ?>
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal5">
-                                Bimbingan Dosen
-                            </button>
                             <a class="btn btn-default" data-placement="top" data-toggle="tooltip" data-original-title="Kembali" href="javascript:window.history.go(-1);">
                                 <i class="fa fa-mail-reply"></i> Kembali
                             </a>
                         </form>
-            <?php
+                    <?php
 
                     } else {
                         echo '<div class="alert alert-warning">
@@ -68,20 +68,20 @@
                                 </div>';
                     }
                 } elseif ($role == '5') {
-                    echo '<form class="form-horizontal" action="">';
                     if (strtotime($sk['end']) >= strtotime(date("d-m-Y"))) {
                         if ($detail_kp['flag_open'] == 't') {
-                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_dosen">Bimbingan Dosen</button>';
+                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_dosen"> <i class="fa fa-comments"></i> Bimbingan Dosen</button>';
                         }
-                        echo '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal5">Bimbingan</button>';
-                        echo '<button type="button" class="btn btn-default" data-original-title="Kembali" href="javascript:window.history.go(-1);"><i class="fa fa-mail-reply"></i> Kembali</button>';
+                    ?>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal5"><i class="fa fa-comments"></i> Bimbingan</button>
+                        <button type="button" class="btn btn-default" data-original-title="Kembali" href="javascript:window.history.go(-1);"><i class="fa fa-mail-reply"></i> Kembali</button>
+            <?php
                     } else {
                         echo '<button type="button" class="btn btn-default" data-original-title="Kembali" href="javascript:window.history.go(-1);"><i class="fa fa-mail-reply"></i> Kembali</button>';
                         echo '<div class="alert alert-warning">
                         Waktu Bimbingan Telah Berakhir.
                     </div>';
                     }
-                    echo '</form>';
                 }
             }
             ?>
@@ -172,6 +172,9 @@
                 <h3>Jumlah Bimbingan : <?php echo $count['total']; ?> Kali </h3>
             </strong>
             <div class="hr-line-dashed"></div>
+            <div class="alert alert-warning">
+                <b>Bimbingan pada tanggal yang sama dihitung 1 kali bimbingan !!!</b>
+            </div>
             <div id="vertical-timeline" class="vertical-container dark-timeline">
                 <?php
                 foreach ($bimbingan->result() as $row) {

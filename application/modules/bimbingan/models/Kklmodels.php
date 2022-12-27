@@ -192,12 +192,17 @@ class Kklmodels extends CI_Model
     // menampilkan jumlah bimbingan individu
     function count_bimbingan_individu($id_kkl_individu)
     {
-        $this->db->select('COUNT(bk.id) as total');
-        $this->db->join('users u', 'u.id = bk.id_user', 'left');
-        $this->db->join('users_groups ug', 'ug.user_id = u.id', 'left');
-        $this->db->where('bk.id_kkl', $id_kkl_individu);
-        // $this->db->where('ug.group_id', '5');
-        $query = $this->db->get('bimbingan_kkl_individu bk');
+        $query = $this->db->query("
+            SELECT count(v_bk.id_kkl) AS total, v_bk.id_kkl
+            FROM ( SELECT count(bk.id) AS jml_bimbingan,
+                        bk.id_kkl
+                    FROM bimbingan_kkl_individu bk
+                        LEFT JOIN users u ON u.id = bk.id_user
+                        LEFT JOIN users_groups ug ON ug.user_id = u.id
+                    WHERE ug.group_id = 4 AND bk.id_kkl = '$id_kkl_individu'
+                    GROUP BY bk.id_kkl, bk.date) v_bk
+            GROUP BY v_bk.id_kkl
+        ");
         return $query->row_array();
     }
     // ================== kelompok =======================
@@ -366,15 +371,19 @@ class Kklmodels extends CI_Model
         }
     }
 
-    // menampilkan jumlah bimbingan individu
-    // function count_bimbingan_kelompok($id_kelompok_kkl)
-    // {
-    //     $this->db->select('COUNT(bk.id) as total');
-    //     $this->db->join('users u', 'u.id = bk.id_user', 'left');
-    //     $this->db->join('users_groups ug', 'ug.user_id = u.id', 'left');
-    //     $this->db->where('bk.id_kelompok_kkl', $id_kelompok_kkl);
-    //     $this->db->where('ug.group_id', '5');
-    //     $query = $this->db->get('bimbingan_kkl_kelompok bk');
-    //     return $query->row_array();
-    // }
+    // menampilkan jumlah bimbingan kelimpok
+    function count_bimbingan_kelompok($id_kelompok_kkl)
+    {
+        $query = $this->db->query("
+            SELECT COUNT(id_kelompok_kkl) as total, v_bk.id_kelompok_kkl FROM
+                (SELECT bk.id_kelompok_kkl, bk.date
+                FROM bimbingan_kkl_kelompok bk
+                LEFT JOIN users u ON u.id = bk.id_user
+                LEFT JOIN users_groups ug ON ug.user_id = u.id
+                WHERE ug.group_id = 4 and bk.id_kelompok_kkl = '$id_kelompok_kkl'
+                GROUP BY bk.id_kelompok_kkl, bk.date)v_bk
+            GROUP BY v_bk.id_kelompok_kkl
+        ");
+        return $query->row_array();
+    }
 }

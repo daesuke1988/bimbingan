@@ -6,7 +6,7 @@ class Skripsi extends MX_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model(array('skripsimodels', 'akademikmodels'));
+        $this->load->model(array('skripsimodels', 'akademikmodels', 'configmodels'));
         $this->template->set('title', '<i class="fa text-success"> Skripsi </i>');
         // $this->output->enable_profiler(TRUE);
     }
@@ -18,17 +18,19 @@ class Skripsi extends MX_Controller
         $id_groups = $this->session->userdata('group_id');
         if ($id_groups == '5') {
             $nim = $this->session->userdata('username');
+            $data['config'] = $this->configmodels->config();
             $cek = $this->skripsimodels->cek_skripsi($nim);
             if ($cek) {
                 $data['cek'] = $cek;
                 $data['kp'] = $this->skripsimodels->pend_skripsi_mhs($nim);
-                $data['config'] = $this->configmodels->config();
                 $this->template->load('layout', 'skripsi/views', $data);
             } else {
                 $data['profile'] = $this->akademikmodels->biodata($nim);
                 $data['akademik'] = $this->akademikmodels->data_studi($nim);
                 $data['krs'] = $this->akademikmodels->cek_krs_kp($nim);
                 $data['dosen'] = $this->akademikmodels->dosen();
+                $data['tahun']  = $data['config']['tahun'];
+                $data['pembayaran'] = $this->akademikmodels->cek_pembayaran_skripsi($nim, $data['config']['tahun'], $data['config']['semester']);
                 $this->template->load('layout', 'skripsi/form_skripsi', $data);
             }
         } else {
@@ -187,21 +189,6 @@ class Skripsi extends MX_Controller
             <strong> Pengajuan gagal dikirim!!! </strong>
         </div>');
         } else {
-            // $judul = $this->input->post('judul');
-            // if ($this->skripsimodels->isjudulExists($judul)) {
-            //     $data['profile'] = $this->akademikmodels->biodata($nim);
-            //     $data['akademik'] = $this->akademikmodels->data_studi($nim);
-            //     $data['krs'] = $this->akademikmodels->cek_krs_kp($nim);
-            //     $data['dosen'] = $this->akademikmodels->dosen();
-            //     $data['nim']   = $nim;
-            //     $this->session->set_flashdata('message', '<div class="alert alert-danger">
-            //                                 <button class="close" data-dismiss="alert"> × </button>
-            //                                 <i class="fa fa-check-circle"></i>
-            //                                 <strong> Judul dengan nama ' . $judul . ', Sudah digunakan!!! </strong>
-            //                             </div>');
-            //     // $this->load->view('form_kp', $data);
-            //     $this->template->load('layout', 'skripsi/form_skripsi', $data);
-            // } else {
             $this->db->trans_start();
             $params = array(
                 'nim'                   => $nim,

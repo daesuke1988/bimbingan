@@ -105,7 +105,7 @@ class Dashboard_models extends CI_Model
         $npp = $this->session->userdata('username');
         $this->db->select('COUNT(id_kelompok_kkl) as jml');
         $this->db->where('npp_dosen', $npp);
-        $query = $this->db->get('v_rekap_count_jml_bimbingan_kelompok');
+        $query = $this->db->get('v_rekap_count_jml_bimbingan_kkl_kelompok');
         return $query->row_array();
     }
 
