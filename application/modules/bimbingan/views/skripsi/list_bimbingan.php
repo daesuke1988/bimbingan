@@ -46,11 +46,13 @@
                                 <i class="fa fa-comments"></i> Bimbingan Dosen
                             </button>
                             <?php
-                            if ($count['total'] >= '12') {
+                            if (!is_null($count)) {
+                                if ($count['total'] >= '12') {
                             ?>
-                                <input type="hidden" name="id_skripsi" value="<?php echo $id_skripsi; ?>">
-                                <button class="btn btn-info" type="submit">Acc <i class="fa fa-arrow-circle-right"></i></button>
+                                    <input type="hidden" name="id_skripsi" value="<?php echo $id_skripsi; ?>">
+                                    <button class="btn btn-info" type="submit">Acc <i class="fa fa-arrow-circle-right"></i></button>
                             <?php
+                                }
                             }
                             ?>
 
@@ -165,7 +167,14 @@
                 <h2><i class="fa text-success">Catatan Bimbingan Skripsi </i></h2>
             </strong>
             <strong>
-                <h3>Jumlah Bimbingan : <?php echo $count['total']; ?> Kali </h3>
+                <h3>Jumlah Bimbingan :
+                    <?php
+                    if (!is_null($count)) {
+                        echo $count['total'];
+                    } else {
+                        echo '0';
+                    }
+                    ?> Kali </h3>
             </strong>
             <div class="hr-line-dashed"></div>
             <div class="alert alert-warning">

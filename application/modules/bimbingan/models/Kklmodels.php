@@ -163,7 +163,12 @@ class Kklmodels extends CI_Model
                 CASE
                     WHEN pk.id_dosen IS NOT NULL THEN concat((((d.gelar_depan::text || ''::text) || d.nmdos::text) || ', '::text) || d.gelar_belakang::text)
                     ELSE 'dosen belum diset'::text
-            END AS dosen, p.nama as nm_prodi
+            END AS dosen,
+            CASE
+                    WHEN pk.id_dosen IS NOT NULL THEN nodos
+                    ELSE 'dosen belum diset'::text
+            END AS npp_dosen,
+            p.nama as nm_prodi
             FROM kkl
             LEFT JOIN pembimbing_kkl pk ON pk.id_kkl = kkl.id
             LEFT JOIN dosen d ON d.id = pk.id_dosen

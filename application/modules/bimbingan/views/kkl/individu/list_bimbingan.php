@@ -46,11 +46,13 @@
                                 <i class="fa fa-comments"></i> Bimbingan Dosen
                             </button>
                             <?php
-                            if ($count['total'] >= '1') {
+                            if (!is_null($count)) {
+                                if ($count['total'] >= '1') {
                             ?>
-                                <input type="hidden" name="id_kkl" value="<?php echo $id_kkl; ?>">
-                                <button class="btn btn-info" type="submit"><i class="fa fa-arrow-circle-right"></i> Acc </button>
+                                    <input type="hidden" name="id_kkl" value="<?php echo $id_kkl; ?>">
+                                    <button class="btn btn-info" type="submit"><i class="fa fa-arrow-circle-right"></i> Acc </button>
                             <?php
+                                }
                             }
                             ?>
                             <a class="btn btn-default" data-placement="top" data-toggle="tooltip" data-original-title="Kembali" href="javascript:window.history.go(-1);">
@@ -170,7 +172,14 @@
                 <h2><i class="fa text-success">Catatan Bimbingan Kuliah Kerja Lapangan </i></h2>
             </strong>
             <strong>
-                <h3>Jumlah Bimbingan : <?php echo $count['total']; ?> Kali </h3>
+                <h3>Jumlah Bimbingan :
+                    <?php
+                    if (!is_null($count)) {
+                        echo $count['total'];
+                    } else {
+                        echo '0';
+                    }
+                    ?> Kali </h3>
             </strong>
             <div class="hr-line-dashed"></div>
             <div class="alert alert-warning">

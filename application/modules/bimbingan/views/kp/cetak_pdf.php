@@ -18,7 +18,7 @@
         th,
         td {
             border: 1px solid #fff;
-            padding: 8px 8px;
+            padding: 4px 4px;
         }
 
         .table1 tr th {
@@ -113,6 +113,11 @@
         ?>
     </table>
     <table width='100%'>
+        <tr>
+            <td width='50%'></td>
+            <td align="center">Yogyakarta,
+                <?php echo date_indo(date('Y-m-d')); ?></td>
+        </tr>
         <tr>
             <td width='50%'></td>
             <td align="center">Dosen Pembimbing &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

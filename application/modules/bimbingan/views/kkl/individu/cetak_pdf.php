@@ -150,6 +150,13 @@
     <table width='100%'>
         <tr>
             <td width='50%'></td>
+            <td align="center">Yogyakarta,
+                <?php
+                echo date_indo(date('Y-m-d'));
+                ?></td>
+        </tr>
+        <tr>
+            <td width='50%'></td>
             <td align="center">Dosen Pembimbing &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         </tr>
         <tr>

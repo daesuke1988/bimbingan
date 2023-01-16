@@ -1,4 +1,5 @@
 <link href="<?php echo base_url(); ?>assets/css/plugins/c3/c3.min.css" rel="stylesheet">
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         :: Data Bimbingan Tahun Ajaran Aktif
@@ -232,8 +233,6 @@
 
 <!-- d3 and c3 charts -->
 <script src="<?php echo base_url(); ?>assets/js/plugins/d3/d3.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/plugins/c3/c3.min.js"></script>
-
 <script>
     $(document).ready(function() {
         c3.generate({
@@ -272,17 +271,18 @@
             }
         });
 
-        c3.generate({
-            bindto: '#kelompok',
-            data: {
-                columns: <?php echo $data_chart_kelompok_value; ?>,
-                colors: {
-                    data1: '#1ab394',
-                    data2: '#BABABA'
-                },
-                type: 'pie'
-            }
-        });
+        // c3.generate({
+        //     bindto: '#kelompok',
+        //     data: {
+        //         columns: <?php //echo $data_chart_kelompok_value; 
+                            ?>,
+        //         colors: {
+        //             data1: '#1ab394',
+        //             data2: '#BABABA'
+        //         },
+        //         type: 'pie'
+        //     }
+        // });
 
     });
 </script>

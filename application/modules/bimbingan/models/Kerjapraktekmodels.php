@@ -191,7 +191,12 @@ class Kerjapraktekmodels extends CI_Model
                     when status1='t' then concat(d1.gelar_depan||''||d1.nmdos||', '||d1.gelar_belakang)
                     when status2='t' then concat(d2.gelar_depan||''||d2.nmdos||', '||d2.gelar_belakang)
                             else 'dosen belum disetujui'
-                end as dosen, p.nama as nm_prodi
+                end as dosen, p.nama as nm_prodi,
+                CASE
+                    when status1='t' then d1.nodos
+                    when status2='t' then d2.nodos
+                    else 'dosen belum disetujui'
+            END AS npp_dosen
             FROM kerja_praktek kp
             LEFT JOIN pembimbing_kp pk ON pk.id_kp = kp.id
             LEFT JOIN dosen d1 ON d1.id = pk.id_dosen1

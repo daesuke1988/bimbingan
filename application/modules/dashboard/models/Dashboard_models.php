@@ -1,10 +1,4 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * Created by PhpStorm.
- * User: kresna
- * Date: 9/7/2015
- * Time: 8:44 AM
- */
 
 class Dashboard_models extends CI_Model
 {
