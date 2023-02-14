@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <!-- Sweet Alert -->
 <link href="<?php echo base_url(); ?>assets/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-
+<script src="<?php echo base_url(); ?>assets/js/vendor/jquery.js" xmlns="http://www.w3.org/1999/html"></script>
 <div class="col-lg-12">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -13,51 +13,30 @@
                 echo "<i>" . $this->session->flashdata('message_pembayaran') . "</i>";
             }
             ?>
-            <a class="btn btn-success" href="<?= base_url() ?>pembayaran/insert"> <i class="fa fa-plus-square"></i> Tambah</a>
-            <br />
-            <br />
-
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover dataTables-example">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>No. Mahasiswa</th>
-                            <th>Nama</th>
-                            <th>Jenis Pembayaran</th>
-                            <th>Tahun</th>
-                            <th>Semester</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <?php
-                    $i = 1;
-                    //                            if(count($all_groups)){
-                    foreach ($pembayaran->result() as $row) {
-                    ?>
-                        <tr>
-                            <td width="5%"><?php echo $i++; ?></td>
-                            <td><?php echo $row->nim; ?></td>
-                            <td><?php echo $row->nama; ?></td>
-                            <td><?php echo $row->jenis_pembayaran; ?></td>
-                            <td><?php echo $row->tahun; ?></td>
-                            <td><?php echo $row->semester == '1' ? 'Ganjil' : 'Gasal'; ?></td>
-                            <td width="15%">
-                                <div class="tooltip-demo">
-                                    <a class="btn btn-outline btn-info" data-placement="top" data-toggle="tooltip" data-original-title="Edit" href="<?= base_url() ?>pembayaran/update/<?= urlencode(base64_encode($row->id)); ?>">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a class="btn btn-outline btn-danger" data-placement="top" data-toggle="tooltip" data-original-title="Hapus" href="#" onclick="return confirmDelete(<?php echo $row->id; ?>)">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php
-                    }
-                    //                            }
-                    ?>
-                </table>
+                <div class="form-group row">
+                    <div class="col-sm-1">
+                        <a class="btn btn-success" href="<?= base_url() ?>pembayaran/insert"> <i class="fa fa-plus-square"></i> Tambah</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <select name="jenis_pembayaran" id="jenis_pembayaran" class="form-control">
+                            <option value=""> :: Pilih Jenis Pembayaran ::</option>
+                            <option value="KKL"> KKL </option>
+                            <option value="Kerja Praktek"> Kerja Praktek </option>
+                            <option value="Skripsi"> Skripsi </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select name="approv_dosen" id="approv_dosen" class="form-control">
+                            <option value=""> :: Pilih Status :: </option>
+                            <option value="t"> Selesai </option>
+                            <option value="f"> Belum Selesai </option>
+                        </select>
+                    </div>
+                </div>
+                <hr color="green">
+                <div id="result">
+                </div>
             </div>
         </div>
     </div>
@@ -103,4 +82,44 @@
                 }
             });
     }
+
+    var $modal = '';
+    // jQuery.noConflict();
+    $(document).ready(function() {
+        $modal = $('#myModal').modal({
+            show: false
+        });
+
+    });
+
+    $(document).ready(function() {
+
+        load_data();
+
+        function load_data(approv_dosen, jenis_pembayaran) {
+            $.ajax({
+                url: "<?php echo base_url(); ?>pembayaran/search",
+                method: "POST",
+                data: {
+                    approv_dosen: approv_dosen,
+                    jenis_pembayaran: jenis_pembayaran
+                },
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            })
+        }
+
+        $('#jenis_pembayaran').change(function() {
+            var approv_dosen = $("#approv_dosen").val();
+            var jenis_pembayaran = $("#jenis_pembayaran").val();
+            load_data(approv_dosen, jenis_pembayaran)
+        });
+
+        $('#approv_dosen').change(function() {
+            var approv_dosen = $("#approv_dosen").val();
+            var jenis_pembayaran = $("#jenis_pembayaran").val();
+            load_data(approv_dosen, jenis_pembayaran)
+        });
+    });
 </script>

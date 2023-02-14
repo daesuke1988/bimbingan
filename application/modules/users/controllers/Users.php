@@ -123,7 +123,7 @@ class Users extends MX_Controller
         $id = base64_decode(urldecode($this->uri->segment(3)));
         $user = $this->usermodels->get_user_by_id($id)->row();
         $cek_mhs = $this->db->query("select * from mhs where nim = '$user->username'")->row_array();
-        $cek_dosen = $this->db->query("select * from dosen where npp = '$user->username'")->row_array();
+        $cek_dosen = $this->db->query("select * from dosen where nodos = '$user->username'")->row_array();
         if (is_null($cek_mhs) && is_null($cek_dosen)) {
             $this->usermodels->delete($id);
             $this->usermodels->delete_group($id);
@@ -226,6 +226,40 @@ class Users extends MX_Controller
                                             <strong>Password Berhasil diubah</strong>
                                         </div>');
             redirect('users');
+        }
+    }
+
+    /*
+     * reset password
+     */
+    function reset_password()
+    {
+        // $this->ion_auth->is_allow('users/' . __FUNCTION__);
+        $this->form_validation->set_rules('password', 'Password', 'trim|required', array('required' => '%s Harus Diisi.'));
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>', '</div>');
+
+        $id = $this->session->userdata('id_user');
+        if ($this->form_validation->run() == FALSE) {
+            $data['title']    = ' Users';
+            $data['users'] = $this->usermodels->get_user_by_id($id);
+            $this->template->load('layout', 'reset_password', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger">
+                        <button class="close" data-dismiss="alert"> × </button>
+                        <i class="fa fa-check-circle"></i>
+                        <strong>User Gagal diubah</strong>
+                    </div>');
+        } else {
+            $params = array(
+                'password'      => sha1($this->input->post('password')),
+            );
+            $this->usermodels->update($id, $params);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success">
+                                            <button class="close" data-dismiss="alert"> × </button>
+                                            <i class="fa fa-check-circle"></i>
+                                            <strong>User Berhasil diubah</strong>
+                                        </div>');
+            redirect('welcome/logout');
         }
     }
 }

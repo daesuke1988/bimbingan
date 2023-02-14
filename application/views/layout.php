@@ -42,7 +42,7 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="<?php echo base_url() . $this->session->userdata('image'); ?>" width="48px" height="48px" /></span>
+                            <span><img alt="image" class="img-circle" src="<?php echo base_url(); ?>/assets/images/profile.jpg" width="48px" height="48px" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                     <!-- <span class="block m-t-xs"> <strong class="font-bold"><?php //echo $this->session->userdata('nama'); 
@@ -51,10 +51,10 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <!-- <li><a href="<?php echo base_url() ?>users/profile">Profile</a></li>
-                                <li><a href="<?php echo base_url() ?>suratmasuk">inbox surat masuk</a></li> -->
+                                <li><a href="<?php echo base_url() ?>users/reset_password">Ubah Password</a></li>
+                                <!-- <li><a href="<?php echo base_url() ?>suratmasuk">inbox surat masuk</a></li> -->
                                 <li class="divider"></li>
-                                <li><a href="<?php echo base_url(); ?>welcome/logout">Logout</a></li>
+                                <li><a href="<?php echo base_url(); ?>welcome/logout">Keluar</a></li>
                             </ul>
                         </div>
                         <div class=" logo-element">
@@ -83,7 +83,7 @@
 
                         <li>
                             <a href="<?php echo base_url(); ?>welcome/logout">
-                                <i class=" fa fa-sign-out"></i> Log out
+                                <i class=" fa fa-sign-out"></i> Keluar
                             </a>
                         </li>
                     </ul>

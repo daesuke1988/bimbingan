@@ -11,9 +11,9 @@
                         <select data-placeholder="Choose a Country..." class="chosen-select" name="nim" tabindex="2">
                             <option value="">Pilih No Mahasiswa</option>
                             <?php
-                            foreach ($mhs->result() as $row) {
+                            foreach ($mhs as $key => $row) {
                             ?>
-                                <option value="<?php echo $row->nim . ':' . $row->namamhs; ?>"><?php echo $row->nim . ' - ' . $row->namamhs; ?></option>
+                                <option value="<?php echo $row['nim'] . ':' . $row['namamhs']; ?>"><?php echo $row['nim'] . ' - ' . $row['namamhs']; ?></option>
                             <?php
                             }
                             ?>

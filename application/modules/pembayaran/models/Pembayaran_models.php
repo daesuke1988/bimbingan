@@ -11,10 +11,20 @@ class pembayaran_models extends CI_Model
     /*
      * function menampilkan data pembayaran users
      */
-    function get_all_pembayaran()
+    function get_all_pembayaran($jenis_pembayaran = null, $approv_dosen = null)
     {
+        if ($jenis_pembayaran) {
+            $this->db->where('jenis_pembayaran', $jenis_pembayaran);
+        }
+        if ($approv_dosen) {
+            if ($approv_dosen == 't') {
+                $this->db->where('approv_dosen', $approv_dosen);
+            } else {
+                $this->db->where('approv_dosen IS NULL');
+            }
+        }
         $this->db->order_by('id', 'asc');
-        $query = $this->db->get('pembayaran');
+        $query = $this->db->get('v_pembayaran');
         return $query;
     }
 
@@ -70,5 +80,18 @@ class pembayaran_models extends CI_Model
         } else {
             return TRUE;
         }
+    }
+
+    /*
+     * cek apakah laporan sudah siap sudah disidangkan atau belum
+     */
+    function cek_approv($nim, $jenis_pembayaran)
+    {
+        $this->db->where('nim', $nim);
+        $this->db->where('jenis_pembayaran', $jenis_pembayaran);
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit('1');
+        $query = $this->db->get('v_pembayaran');
+        return $query->row_array();
     }
 }

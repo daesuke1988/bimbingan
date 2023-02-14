@@ -323,7 +323,7 @@ class Kklmodels extends CI_Model
         if ($semester) {
             $this->db->where('semester', $semester);
         }
-        $query = $this->db->get('v_sk_bimbingan_kelompok_kkl');
+        $query = $this->db->get('v_bimbingan_mhs_kelompok_kkl');
         return $query;
     }
 
@@ -331,7 +331,7 @@ class Kklmodels extends CI_Model
     function cetak_sk_kelompok_per_id($id_kelompok_kkl)
     {
         $this->db->where('id_kelompok_kkl', $id_kelompok_kkl);
-        $query = $this->db->get('v_sk_bimbingan_kelompok_kkl');
+        $query = $this->db->get('v_bimbingan_mhs_kelompok_kkl');
         return $query;
     }
 
