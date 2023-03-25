@@ -27,43 +27,6 @@ class Auth
         $this->CI->ion_auth_model->trigger_events('library_constructor');
     }
 
-    function login_sso($username)
-    {
-        // cek di database, ada ga?
-        $this->CI->db->select('u.id as id_user, email, group_id, username, nama_lengkap');
-        $this->CI->db->from('users u');
-        $this->CI->db->join('users_groups ug', 'ug.user_id = u.id', 'left');
-        $this->CI->db->where('u.email', $username);
-        $this->CI->db->where('u.is_active', 'true');
-        $query = $this->CI->db->get();
-
-        foreach ($query->result() as $row) {
-            $id_user = $row->id_user;
-            $email = $row->email;
-            $group_id = $row->group_id;
-            $username = $row->username;
-            $nama_lengkap = $row->nama_lengkap;
-        }
-
-        if ($query->num_rows() == 1) {
-            $newdata = array(
-                'id_user'    => $id_user,
-                'email'  => $email,
-                'group_id'    => $group_id,
-                'username'  => $username,
-                'nama_lengkap'    => $nama_lengkap,
-
-            );
-            $this->CI->session->set_userdata($newdata);
-            $this->CI->db->where('id', $id_user);
-            $this->CI->db->update('users', array('waktu_login' => date('Y-m-d H:i:s')));
-            return TRUE;
-        } else {
-            // No existing user.
-            return FALSE;
-        }
-    }
-
     // untuk validasi login
     function do_login($username, $password)
     {
@@ -73,7 +36,7 @@ class Auth
         $this->CI->db->join('users_groups ug', 'ug.user_id = u.id', 'left');
         $this->CI->db->where('u.username', $username);
         $this->CI->db->where('u.password', $password);
-        $this->CI->db->where('u.is_active', 'true');
+        $this->CI->db->where('u.is_active', 't');
         $query = $this->CI->db->get();
 
         foreach ($query->result() as $row) {

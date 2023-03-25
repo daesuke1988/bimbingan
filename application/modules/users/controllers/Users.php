@@ -14,7 +14,7 @@ class Users extends MX_Controller
 
     public function index()
     {
-        $this->ion_auth->is_allow('users');
+        // $this->ion_auth->is_allow('users');
         $data['all_user'] = $this->usermodels->get_all_user();
         $this->template->load('layout', 'users_view', $data);
     }
@@ -24,7 +24,7 @@ class Users extends MX_Controller
      */
     function insert()
     {
-        $this->ion_auth->is_allow('users/' . __FUNCTION__);
+        // $this->ion_auth->is_allow('users/' . __FUNCTION__);
         $this->form_validation->set_rules('username', 'username', 'trim|required', array('required' => '%s Harus Diisi.'));
         $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required', array('required' => '%s Harus Diisi.'));
         $this->form_validation->set_rules('password', 'Password', 'trim|required', array('required' => '%s Harus Diisi.'));

@@ -44,7 +44,7 @@ class Akademikmodels extends CI_Model
             SELECT m.nim, ds.nama, k.tahun, k.semester FROM data_studi ds
             LEFT JOIN krs k on k.id = ds.id_krs
             LEFT JOIN mhs m ON m.id = k.id_mhs
-            WHERE m.nim = '$nim' AND k.tahun = '2022' AND k.semester = '1' AND ds.nama ILIKE 'Kerja Praktek'
+            WHERE m.nim = '$nim' AND k.tahun = '2022' AND k.semester = '1' AND ds.nama LIKE 'Kerja Praktek'
         ");
         return $query->row_array();
     }
@@ -55,7 +55,7 @@ class Akademikmodels extends CI_Model
             SELECT m.nim, ds.nama, k.tahun, k.semester FROM data_studi ds
             LEFT JOIN krs k on k.id = ds.id_krs
             LEFT JOIN mhs m ON m.id = k.id_mhs
-            WHERE m.nim = '$nim' AND k.tahun = '$tahun' AND k.semester = '$semester' AND (ds.nama ILIKE 'Kuliah Kerja Lapang' or ds.nama ILIKE 'KKL')
+            WHERE m.nim = '$nim' AND k.tahun = '$tahun' AND k.semester = '$semester' AND (ds.nama LIKE 'Kuliah Kerja Lapang' or ds.nama LIKE 'KKL')
         ");
         return $query->row_array();
     }

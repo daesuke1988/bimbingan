@@ -7,7 +7,7 @@ class Upload extends MX_Controller
     {
         parent::__construct();
         $this->load->model(array('uploadmodels', 'akademikmodels', 'configmodels'));
-        $this->template->set('title', '<i class="fa text-success"> Kerja Praktek </i>');
+        $this->template->set('title', '<i class="fa text-success"> Laporan File Skripsi </i>');
         // $this->output->enable_profiler(TRUE);
     }
 

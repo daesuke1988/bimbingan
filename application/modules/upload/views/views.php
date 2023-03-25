@@ -10,7 +10,7 @@ if ($this->session->flashdata('message')) {
 <div class="col-lg-12">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            :: Data Riwayat Pembayaran
+            :: Data Laporan Skripsi
         </div>
         <div class="panel-body">
             <?php

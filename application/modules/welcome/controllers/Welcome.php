@@ -108,6 +108,7 @@ class Welcome extends MX_Controller
             $username = $this->input->post('username');
             $password = sha1($this->input->post('password'));
             $success = $this->auth->do_login($username, $password);
+
             if ($success) {
                 //                MY_log::write_log_database("success-login", $this->session->userdata('id_user'), $this->session->userdata('username'),null,null,null, 'logout',false);
                 redirect('dashboard');
